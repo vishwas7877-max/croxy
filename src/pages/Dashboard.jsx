@@ -34,8 +34,20 @@ const Dashboard = () => {
       }
 
 
-      const animeData = await getAnimeRecommendations();
-      const musicData = await getMusicRecommendations();
+      let animeData = [];
+      let musicData = [];
+
+      try {
+        animeData = await getAnimeRecommendations();
+      } catch (err) {
+        console.log("No anime recommendations yet");
+      }
+
+      try {
+        musicData = await getMusicRecommendations();
+      } catch (err) {
+        console.log("No music recommendations yet");
+      }
 
       console.log("USER:", userData);
       console.log("PREFERENCES:", prefData);
