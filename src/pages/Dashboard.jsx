@@ -25,7 +25,15 @@ const Dashboard = () => {
   const loadDashboard = async () => {
     try {
       const userData = await getCurrentUser();
-      const prefData = await getPreferences();
+      let prefData = null;
+
+      try {
+        prefData = await getPreferences();
+      } catch (err) {
+        console.log("No preferences found yet");
+      }
+
+
       const animeData = await getAnimeRecommendations();
       const musicData = await getMusicRecommendations();
 
